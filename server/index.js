@@ -5,7 +5,7 @@ app.listen(5000,()=>{
     console.log("server has started on port 5000")
 })
 
-//middleware
+//mbirthdayremindertable_iddleware
 const cors=require("cors")
 app.use(cors())
 app.use(express.json()) //req.body
@@ -48,12 +48,12 @@ app.get("/birthdayReminder", async (req, res) => {
 
 //get a birthday reminder
 
-app.get("/birthdayReminder/:name",async(req,res)=>{
+app.get("/birthdayReminder/:birthdayremindertable_id",async(req,res)=>{
     try {
         // console.log(req.params)
-        const { name } = req.params;
-        const birthdays = await pool.query("SELECT * FROM birthdayReminderTable WHERE name = $1", [
-            name
+        const { birthdayremindertable_id } = req.params;
+        const birthdays = await pool.query("SELECT * FROM birthdayReminderTable WHERE birthdayremindertable_id = $1", [
+            birthdayremindertable_id
       ]);
   
       res.json(birthdays.rows[0]);
@@ -69,16 +69,16 @@ app.get("/birthdayReminder/:name",async(req,res)=>{
 // PATCH is a method of modifying resources 
 // where the client sends partial data that is to be updated without modifying the entire data
 
-app.put("/birthdayReminder/:birthdayReminderTable_id", async (req, res) => {
+app.put("/birthdayReminder/:birthdayremindertable_id", async (req, res) => {
     try {
-      const { birthdayReminderTable_id } = req.params;
+      const { birthdayremindertable_id } = req.params;
 
       const {name}=req.body
       const {age}=req.body
     
       const updateBirthday = await pool.query(
-        "UPDATE birthdayReminderTable SET name=$1,age=$2 WHERE birthdayReminderTable_id = $3 RETURNING *",
-        [name, age, birthdayReminderTable_id]
+        "UPDATE birthdayReminderTable SET name=$1,age=$2 WHERE birthdayremindertable_id = $3 RETURNING *",
+        [name, age, birthdayremindertable_id]
         
       );
   
@@ -90,12 +90,12 @@ app.put("/birthdayReminder/:birthdayReminderTable_id", async (req, res) => {
 
 //delete a birthday reminder
 
-app.delete("/birthdayReminder/:birthdayReminderTable_id", async (req, res) => {
+app.delete("/birthdayReminder/:birthdayremindertable_id", async (req, res) => {
     try {
-        const { birthdayReminderTable_id } = req.params;
+        const { birthdayremindertable_id } = req.params;
 
-        const deleteBirthday = await pool.query("DELETE FROM birthdayReminderTable WHERE birthdayReminderTable_id = $1", [
-            birthdayReminderTable_id
+        const deleteBirthday = await pool.query("DELETE FROM birthdayReminderTable WHERE birthdayremindertable_id = $1", [
+            birthdayremindertable_id
       ]);
       res.json("Birthday have been deleted!");
     } catch (err) {
