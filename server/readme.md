@@ -53,6 +53,7 @@ CREATE TABLE birthdayReminderTable(
 - https://www.youtube.com/watch?v=RAFZleZYxsc
 
 #### starting with postgres in terminal
+- to enter from cmd we have to do `psql -U postgres`
 - https://www.youtube.com/watch?v=0EBkVzIBnoc
 - you have got to add the environment variables
 
